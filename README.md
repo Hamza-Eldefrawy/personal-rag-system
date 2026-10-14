@@ -176,8 +176,14 @@ The project decouples **network fetching** from **local loading** for maximum sp
 
 ## 💬 Running the Pipeline
 
-To build the FAISS index and run queries against your personal knowledge base:
+### 🌐 Streamlit Web UI (Interactive Chat)
+Run the web interface with custom styling and controls:
+```bash
+streamlit run app.py
+```
 
+### 💻 Terminal Chat
+To run directly in the terminal:
 ```bash
 # Add src to PYTHONPATH if running directly
 # On Windows (cmd):

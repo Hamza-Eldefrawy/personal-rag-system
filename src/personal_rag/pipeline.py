@@ -43,6 +43,7 @@ class PersonalRAG:
         index_path=FAISS_INDEX_PATH,
         llm_model: str = LLM_MODEL,
         temperature: float = LLM_TEMPERATURE,
+        k: int = RETRIEVER_K,
     ):
         self.pdf_path = Path(pdf_path)
         self.github_username = github_username
@@ -50,6 +51,7 @@ class PersonalRAG:
         self.index_path = Path(index_path)
         self.llm_model = llm_model
         self.temperature = temperature
+        self.k = k
 
         self.vector_db = None
         self.chain = None
@@ -80,7 +82,7 @@ class PersonalRAG:
             save_vector_db(self.vector_db, self.index_path)
             print(f"FAISS index saved to {self.index_path.resolve()}.")
 
-        retriever = get_retriever(self.vector_db, k=RETRIEVER_K)
+        retriever = get_retriever(self.vector_db, k=self.k)
         llm = get_llm(model=self.llm_model, temperature=self.temperature)
         prompt = get_prompt_template()
         memory = get_conversation_memory()
@@ -93,6 +95,21 @@ class PersonalRAG:
         )
         print("Personal RAG system is ready.")
         return self
+
+    def update_k(self, k: int):
+        """Update retrieval K and rebuild the conversational chain quickly."""
+        self.k = k
+        if self.vector_db is not None:
+            retriever = get_retriever(self.vector_db, k=self.k)
+            llm = get_llm(model=self.llm_model, temperature=self.temperature)
+            prompt = get_prompt_template()
+            memory = get_conversation_memory()
+            self.chain = build_conversational_chain(
+                llm=llm,
+                retriever=retriever,
+                prompt=prompt,
+                memory=memory,
+            )
 
     def ask(self, question: str) -> dict:
         """Query the conversational chain."""
