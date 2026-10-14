@@ -1,5 +1,10 @@
 # Personal RAG
 
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://persona-rag.streamlit.app/)
+[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
+
+> **🚀 Live Demo:** Try the interactive web app here: [https://persona-rag.streamlit.app/](https://persona-rag.streamlit.app/)
+
 A modular, local Retrieval-Augmented Generation (RAG) system designed to answer questions about a person's technical background, projects, skills, and codebase by ingesting data from **GitHub** (profile, repositories, READMEs, source code) and optional **documents (e.g., CV / Resume PDF)**.
 
 ---
@@ -177,7 +182,8 @@ The project decouples **network fetching** from **local loading** for maximum sp
 ## 💬 Running the Pipeline
 
 ### 🌐 Streamlit Web UI (Interactive Chat)
-Run the web interface with custom styling and controls:
+- **Live Demo**: [https://persona-rag.streamlit.app/](https://persona-rag.streamlit.app/)
+- **Run locally**:
 ```bash
 streamlit run app.py
 ```
