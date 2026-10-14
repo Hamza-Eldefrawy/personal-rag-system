@@ -109,16 +109,17 @@ class PersonalRAG:
 def main():
     rag = PersonalRAG().build()
 
-    print("\n--- Testing Personal RAG ---")
-    q1 = "What is the personal information of Hamza Eldafrawy?"
-    print(f"\nUser: {q1}")
-    res1 = rag.ask(q1)
-    print(f"Assistant: {res1['answer']}")
+    print("\n--- Personal RAG Chat (type 'exit' to quit) ---\n")
+    while True:
+        question = input("You: ").strip()
+        if not question:
+            continue
+        if question.lower() in ("exit", "quit"):
+            print("Goodbye!")
+            break
 
-    q2 = "I want to know what does Hamza specialize in?"
-    print(f"\nUser: {q2}")
-    res2 = rag.ask(q2)
-    print(f"Assistant: {res2['answer']}")
+        result = rag.ask(question)
+        print(f"Assistant: {result['answer']}\n")
 
 
 if __name__ == "__main__":

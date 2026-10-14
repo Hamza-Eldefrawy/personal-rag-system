@@ -27,5 +27,5 @@ EMBEDDING_DEVICE = "cpu"
 # Chunking & Retrieval Configuration
 CHUNK_SIZE = 200
 CHUNK_OVERLAP = 20
-RETRIEVER_K = 3
+RETRIEVER_K = 6
 
